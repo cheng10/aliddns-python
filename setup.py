@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="aliddns-python",
-    version="0.0.1",
+    version="0.1.0",
     author="cheng10",
     author_email="cheng10@ualberta.ca",
     description="A Dynamic DNS tool for alicloud",
@@ -13,6 +13,12 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/cheng10/aliddns-python",
     packages=setuptools.find_packages(),
+    install_requires=[
+        'docopt',
+        'requests',
+        'aliyun-python-sdk-core',
+        'aliyun-python-sdk-alidns',
+    ],
     classifiers=[
         "Programming Language :: Python :: 2",
         "Programming Language :: Python :: 3",
