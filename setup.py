@@ -5,10 +5,10 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="aliddns-python",
-    version="0.1.0",
+    version="0.1.1",
     author="cheng10",
     author_email="cheng10@ualberta.ca",
-    description="A Dynamic DNS tool for alicloud",
+    description="A Dynamic DNS(DDNS) tool for alicloud",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/cheng10/aliddns-python",

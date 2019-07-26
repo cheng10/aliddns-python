@@ -123,7 +123,7 @@ def get_public_ip():
 
 if __name__ == '__main__':
     args = docopt(__doc__, version='1.0.0')
-    print(args)
+    logger.debug(args)
     client = AcsClient(args['--key'], args['--secret'], 'cn-hangzhou')
     record_info = get_sub_domain_records(client, args['--record'])
     update_domain_record(

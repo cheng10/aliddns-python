@@ -1,12 +1,20 @@
 # aliddns-python
 
-A simple dynamic DNS tool for alicloud DNS.
+A simple dynamic DNS(DDNS) tool for alicloud.
 
 [![image](https://img.shields.io/pypi/status/aliddns-python)](https://pypi.org/project/aliddns-python/)
 [![image](https://img.shields.io/pypi/v/aliddns-python.svg)](https://pypi.org/project/aliddns-python/)
 [![image](https://img.shields.io/pypi/l/aliddns-python.svg)](https://pypi.org/project/aliddns-python/)
 [![image](https://img.shields.io/pypi/pyversions/aliddns-python.svg)](https://pypi.org/project/aliddns-python/)
 [![image](https://img.shields.io/github/contributors/cheng10/aliddns-python.svg)](https://github.com/cheng10/aliddns-python/graphs/contributors)
+
+## Use Cases
+
+You have domain names hosted in Alibaba Cloud, and you want to setup DDNS.
+DDNS is pretty usefull when you have public but dynamic IP from your ISP.
+Some advanced home routers support DDNS of many kinds out of box,
+but many cheap or old ones do not. This easy to use script allows you to setup
+up Alicloud DDNS sync on your home PC or any python-enabled devices.
 
 ## Installation
 
@@ -30,6 +38,18 @@ python -m aliddns.ddns --key=<ACCESS_KEY> --secret=<SECERT_KEY> --record=www.you
 # use `crontab -e` to edit the crob job
 # m h  dom mon dow   command
 */5 * * * python -m aliddns.ddns --key=<ACCESS_KEY> --secret=<SECERT_KEY> --record=www.yourdomain.com
+```
+
+## Documentation
+
+### Get Your Access Keys from Alibaba Cloud
+
+```text
+Getting a key pair is easy, and lets you to use more API features apart from the DNS one.
+
+In order to get one, log into your Alibaba Cloud console and in the top navigation bar, hover with your mouse in your email address and click "accesskeys" as illustrated below.
+
+<https://www.alibabacloud.com/blog/Dynamic-DNS-using-Alibaba-Cloud-DNS-API_459542>
 ```
 
 ## References
