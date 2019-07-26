@@ -44,6 +44,8 @@ python -m aliddns.ddns --key=<ACCESS_KEY> --secret=<SECERT_KEY> --record=www.you
 
 ### Get Your Access Keys from Alibaba Cloud
 
+![how-to-get-access-key](https://user-images.githubusercontent.com/10646050/61933480-9038de00-afb8-11e9-9bfd-3cd8f21d0ecd.png)
+
 ```text
 Getting a key pair is easy, and lets you to use more API features apart from the DNS one.
 
