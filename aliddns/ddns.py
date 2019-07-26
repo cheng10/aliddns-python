@@ -12,14 +12,13 @@ Options:
     --secret=<secret>                     alickoud access secret.
 
 Install:
-pip install aliyun-python-sdk-core
-pip install aliyun-python-sdk-alidns
-pip install docopt
+pip install docopt, requests, aliyun-python-sdk-core, aliyun-python-sdk-alidns
 
 Tested on:
 aliyun-python-sdk-alidns==2.0.10
 aliyun-python-sdk-core==2.13.5
 """
+import sys
 import json
 import logging
 from logging.config import dictConfig
@@ -73,7 +72,7 @@ def get_sub_domain_records(client, subdomain_name):
     response = client.do_action_with_exception(request)
     res = json.loads(str(response, encoding='utf-8'))
     record_info = res['DomainRecords']['Record'][0]
-    logger.info(f'Domain record found: {record_info}')
+    logger.debug(f'record found: {record_info}')
     return record_info
     # sample response data
     """
@@ -81,15 +80,15 @@ def get_sub_domain_records(client, subdomain_name):
         "PageNumber": 1,
         "TotalCount": 1,
         "PageSize": 20,
-        "RequestId": "19A7E4EB-A57E-4F02-8E7E-5BB18A0FBD39",
+        "RequestId": "19A7E4EB-A57E-4312-8E7E-5BB18A0FBD39",
         "DomainRecords": {
             "Record": [
                 {
                     "RR": "home",
                     "Status": "ENABLE",
-                    "Value": "25x423z923.zicp.vip",
+                    "Value": "21341234123.zicp.vip",
                     "Weight": 1,
-                    "RecordId": "17847367556740096",
+                    "RecordId": "1784730000000",
                     "Type": "CNAME",
                     "DomainName": "cheng10.cc",
                     "Locked": false,
@@ -102,6 +101,10 @@ def get_sub_domain_records(client, subdomain_name):
     """
 
 def update_domain_record(client, record_info, ip):
+    if target_ip == record_info['Value']:
+        logger.info('target ip not modified, not updating record.')
+        return
+
     request = UpdateDomainRecordRequest()
     request.set_accept_format('json')
 
@@ -111,7 +114,9 @@ def update_domain_record(client, record_info, ip):
     request.set_Value(ip)
 
     response = client.do_action_with_exception(request)
-    print(str(response, encoding='utf-8'))
+    res = json.loads(str(response, encoding='utf-8'))
+    logger.info(f'record updated: {res}')
+    return res
 
 
 def get_public_ip():
@@ -126,7 +131,10 @@ if __name__ == '__main__':
     logger.debug(args)
     client = AcsClient(args['--key'], args['--secret'], 'cn-hangzhou')
     record_info = get_sub_domain_records(client, args['--record'])
-    update_domain_record(
-        client, record_info, args.get('--ip') or get_public_ip())
-    logger.info('Updated domain record:')
+    logger.info(f'domain record to update: \n{record_info}')
+    target_ip = args.get('--ip') or get_public_ip()
+    res = update_domain_record(client, record_info, target_ip)
+    if not res:
+        sys.exit()
     record_info = get_sub_domain_records(client, args['--record'])
+    logger.info(f'updated domain record: \n{record_info}')
