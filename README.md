@@ -1,6 +1,6 @@
 # aliddns-python
 
-A simple dynamic DNS(DDNS) tool for alicloud.
+An easy-to-use dynamic DNS(DDNS) tool for Alibaba Cloud.
 
 [![image](https://img.shields.io/pypi/status/aliddns-python)](https://pypi.org/project/aliddns-python/)
 [![image](https://img.shields.io/pypi/v/aliddns-python.svg)](https://pypi.org/project/aliddns-python/)
