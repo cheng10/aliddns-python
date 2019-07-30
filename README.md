@@ -26,7 +26,7 @@ pip install --upgrade aliddns-python
 
 ```shell
 # update the given domain name DNS record with current public ip
-python -m aliddns.ddns --key=<ACCESS_KEY> --secret=<SECERT_KEY> --record=www.yourdomain.com
+python -m aliddns.ddns --key=<ACCESS_KEY> --secret=<SECRET_KEY> --record=www.yourdomain.com
 ```
 
 ## Usage
@@ -37,7 +37,7 @@ python -m aliddns.ddns --key=<ACCESS_KEY> --secret=<SECERT_KEY> --record=www.you
 # update dns record every 5 mins using cron job
 # use `crontab -e` to edit the crob job
 # m h  dom mon dow   command
-*/5 * * * python -m aliddns.ddns --key=<ACCESS_KEY> --secret=<SECERT_KEY> --record=www.yourdomain.com
+*/5 * * * * /usr/bin/python3 -m aliddns.ddns --key=<ACCESS_KEY> --secret=<SECRET_KEY> --record=www.yourdomain.com > /tmp/cron.log 2>&1
 ```
 
 ## Documentation
